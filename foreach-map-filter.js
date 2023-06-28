@@ -232,16 +232,14 @@ Examples:
 */
 
 function removeVowels(str) {
-    let newString = str.toLowerCase();
     const vowels = 'aeiou';
-    for (let vowel of vowels) {
-        for (let char of newString) {
-            if (char === vowel) newString = newString.replace(char, '');
-        }
-    }
+    const characters = str.toLowerCase().split('');
+    const filteredCharacters = characters.filter(function (char) {
+        !vowels.includes(char)
+    });
+    const newString = filteredCharacters.join('');
     return newString;
 }
-
 /*
 Write a function called doubleOddNumbers which accepts an array and returns 
 a new array with all of the odd numbers doubled 
