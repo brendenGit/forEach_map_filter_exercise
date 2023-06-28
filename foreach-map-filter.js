@@ -1,3 +1,5 @@
+//forEach
+//-----------------------------------
 /*
 Write a function called doubleValues which accepts an array and returns a 
 new array with all the values in the array passed to the function doubled
@@ -8,10 +10,10 @@ Examples:
 */
 
 function doubleValues(arr) {
-    const doubledArr = [];
-    for (let value of arr) {
-        doubledArr.push(value * 2);
-    }
+    const doubledArr = []
+    arr.forEach(function (ele) {
+        doubledArr.push(ele * 2);
+    })
     return doubledArr;
 }
 
@@ -25,9 +27,9 @@ Examples:
 */
 function onlyEvenValues(arr) {
     const evenArray = [];
-    for (let value of arr) {
-        if (value % 2 === 0) evenArray.push(value);
-    }
+    arr.forEach(function (ele) {
+        if (ele % 2 === 0) evenArray.push(ele);
+    })
     return evenArray;
 }
 
@@ -42,9 +44,9 @@ Examples:
 
 function showFirstAndLast(arr) {
     const firstAndLastArray = [];
-    for (let string of arr) {
-        firstAndLastArray.push(string[0] + string[string.length - 1]);
-    }
+    arr.forEach(function (ele) {
+        firstAndLastArray.push(ele[0] + ele[ele.length - 1]);
+    })
     return firstAndLastArray;
 }
 
@@ -60,9 +62,9 @@ Examples:
 
 */
 function addKeyAndValue(arr, key, value) {
-    for (let object of arr) {
-        object[key] = value;
-    }
+    arr.forEach(function (ele) {
+        ele[key] = value;
+    })
     return arr;
 }
 
@@ -80,21 +82,25 @@ Examples:
 */
 
 function vowelCount(str) {
-    const vowels = 'aeiou';
-    const lowercase = str.toLowerCase()
+
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    const lowercaseArray = str.toLowerCase().split('');
     let vowelCount = 0;
     let obj = {};
-    for (let vowel of vowels) {
-        for (let char of lowercase) {
+    vowels.forEach(function (vowel) {
+        lowercaseArray.forEach(function (char) {
             if (char === vowel) {
                 vowelCount += 1;
             }
             if (vowelCount !== 0) obj[vowel] = vowelCount;
-        }
+        })
         vowelCount = 0;
-    }
+    })
     return obj;
 }
+
+//map
+//-----------------------------------
 
 /*
 Write a function called doubleValuesWithMap which accepts an array and returns a 
@@ -122,10 +128,9 @@ Examples:
 */
 
 function valTimesIndex(arr) {
-    const newArray = [];
-    for (let num of arr) {
-        newArray.push(num * arr.indexOf(num));
-    }
+    const newArray = arr.map(function (num) {
+        return num * arr.indexOf(num);
+    });
     return newArray;
 }
 
@@ -138,10 +143,9 @@ Examples:
 */
 
 function extractKey(arr, key) {
-    const newArray = [];
-    for (let obj of arr) {
-        newArray.push(obj[key]);
-    }
+    const newArray = arr.map(function (obj) {
+        return obj[key];
+    })
     return newArray;
 }
 
@@ -156,12 +160,14 @@ Examples:
 */
 
 function extractFullName(arr) {
-    const newArray = [];
-    for (let obj of arr) {
-        newArray.push(obj.first + ' ' + obj.last)
-    }
+    const newArray = arr.map(function (obj) {
+        return obj.first + ' ' + obj.last;
+    })
     return newArray;
 }
+
+//filter
+//-----------------------------------
 
 /*
 Write a function called filterByValue which accepts an array of objects 
@@ -174,10 +180,9 @@ Examples:
 */
 
 function filterByValue(arr, key) {
-    const newArray = [];
-    for (let obj of arr) {
-        if (obj[key]) newArray.push(obj);
-    }
+    const newArray = arr.filter(function (obj) {
+        if (obj[key]) return obj;
+    });
     return newArray;
 }
 
@@ -192,9 +197,10 @@ Examples:
 */
 
 function find(arr, searchValue) {
-    for (let value of arr) {
-        if (value === searchValue) return value;
-    }
+    const found = arr.filter(function (value) {
+        if (value === searchValue) return searchValue;
+    });
+    return found[0];
 }
 
 /*
@@ -208,9 +214,10 @@ Examples:
 */
 
 function findInObj(arr, key, searchValue) {
-    for (let obj of arr) {
+    const found = arr.filter(function (obj) {
         if (obj[key] === searchValue) return obj;
-    }
+    });
+    return found[0];
 }
 
 /*
